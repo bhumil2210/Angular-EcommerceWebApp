@@ -1,0 +1,15 @@
+th,td{
+    text-align: center;
+}
+table{
+    margin: 0 auto;
+    width: 80%;
+}
+tr{
+    width: 50%;
+}
+
+#search{
+    width: 20%;
+    left: 80px;
+}

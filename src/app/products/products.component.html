@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-3">
+        <div class="sticky-top">
+            <div class="list-group">
+                <a [class.active]="!category"
+                    routerLink="/"
+                    class="list-group-item list-group-item-action">
+                    All Categories
+                </a>
+                <a *ngFor="let c of categories$ | async" 
+                    routerLink="/"
+                    [queryParams]="{ category: c.name.toLowerCase()}"
+                    class="list-group-item list-group-item-action"
+                    [class.active]="category === c.name.toLowerCase()">
+                    {{ c.name }}
+                </a>
+            </div>
+        </div> 
+    </div>
+    <div class="col">
+        <div class="row">
+            <ng-container *ngFor="let p of filteredProducts; let i=index">
+                <div class="col">
+                    <div class="card">
+                        <img [src]="p.value.imageUrl" class="card-img-top" height="200px">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ p.value.title }}</h5>
+                          <p class="card-text">{{ p.value.price | currency:'INR':true }}</p>
+                          <div class="card-footer">
+                            <button (click)="addToCart(p)" class="btn btn-primary btn-block">Add to Cart</button>
+                            <div>quantity</div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>
